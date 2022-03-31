@@ -1,0 +1,543 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Home</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/Light4.jpg" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Lato:400,300,700,900" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css'%" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css'%}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css'%}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css'%}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Boroko - v4.7.0
+  * Template URL: https://bootstrapmade.com/free-one-page-bootstrap-template-Boroko/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <div class="logo me-auto">
+        <h1><a href="{% url 'index'%}">Boroko</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          
+          <li><a class="nav-link scrollto" href="#portfolio">Categories</a></li> 
+          <li><a class="nav-link scrollto" href="#contact">Contact Us</a></li>
+          {% if user.is_authenticated %}
+          <li><a class="button" href="{% url 'logout'%}">Logout</a></li>
+         
+          <li><a  >{{user.username}}</a></li>
+
+          {% else%}
+          <li><a class="nav-link scrollto" href="{% url 'login'%}">Login</a></li>
+          {% endif %}
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End #header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <div class="card w-40">
+        <div class="card-body">
+         <form>
+              <div class="form-group">
+                  <Label>Location</Label>
+                  <input class="form-control" type="text" placeholder="Maseru...">      
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Check In</label>
+                          <input class="form-control" type="date" required>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                         <label>Check Out</label>
+                          <input class="form-control" type="date" required> 
+                      </div>
+                  </div>
+              </div>
+              <br>              
+              <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select class="form-control" required>
+                            <option value="" selected hidden># of rooms</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select class="form-control" required>
+                            <option value="" selected hidden># of adults</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select class="form-control" required>
+                            <option value="" selected hidden>#of children</option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                    </div>
+                </div>
+            </div>
+            <hr>
+              <div class="form-btn">
+                  <button class="submit-btn">Search</button>
+              </div>
+          </form>              
+        </div>
+      </div>
+    </div>
+  </section><!-- #hero -->
+
+  
+
+  <main id="main">
+
+    
+
+  
+    <!-- ======= rooms Us Section ======= -->
+    <section id="rooms" class="rooms">
+      <div class="container">
+
+        <h4>Here are some great rental options</h2>
+        <hr>
+
+        <div class="row gy-3">
+
+          {% for i in room_list%}
+
+          <div class="col-lg-3 col-md-4">
+            <div class="room">
+              <img src="assets/img/kamer.jpg" alt="">
+              <h4>Walter White</h4>
+              <p>
+                {{i.number_of_bedroom}}
+                <br>
+                <strong>$99999</strong>
+              </p>              
+              
+            </div>
+          </div>
+
+
+          {% endfor%}
+
+          <div class="col-lg-3 col-md-4">
+            <div class="room">
+              <img src="assets/img/kamer.jpg" alt="">
+              <h4>Sarah Jhinson</h4>
+
+              <p>
+                Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus
+                <br>
+                <strong>$99999</strong> / Night
+              </p>
+
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="room">
+              <img src="assets/img/kamer.jpg" alt="">
+              <h4>William Anderson</h4>
+
+              <p>
+                Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
+              </p>
+              
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="room">
+              <img src="assets/img/kamer.jpg" alt="">
+              <h4>William Anderson</h4>
+
+              <p>
+                Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
+              </p>
+              
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="room">
+              <img src="assets/img/kamer.jpg" alt="">
+              <h4>William Anderson</h4>
+
+              <p>
+                Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
+              </p>
+              
+            </div>
+          </div>
+
+         >
+        </div>
+
+
+        <div class="col-lg-1 col-md-2">
+          <div class="show">  
+            <a href="{% url 'rooms'%}" class="">Show All</i></a> 
+          </div>
+        </div>
+
+
+
+      </div>
+    </section><!-- End rooms Us Section -->
+
+    <section id="amenities" class="amenities">
+      <div class="container">
+
+        <h4>Popular amenities with our rentals</h3>
+        <hr>
+
+        <div class="row gy-3">
+
+          
+
+          <div class="col-lg-2 col-md-3">
+            <div class="amenity">
+              <img src="assets/img/Kitchen.jpg" alt="">
+              <h5>Kitchen</h5>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-3">
+            <div class="amenity">
+              <img src="assets/img/wifi.webp" alt="">
+              <h5>Wifi</h5>
+
+              
+              
+            </div>
+          </div>
+          
+          <div class="col-lg-2 col-md-3">
+            <div class="amenity">
+              <img src="assets/img/pool.png" alt="">
+              <h5>Pool</h5>
+
+             
+              
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-9">
+            <div class="amenity">
+              <img src="assets/img/packing.png" alt="">
+              <h5>On premises packing</h5>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-3">
+            <div class="amenity">
+              <img src="assets/img/air.png" alt="">
+              <h5>Air conditioning</h5>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-3">
+            <div class="amenity">
+              <img src="assets/img/Washer & Dryer.jpg" alt="">
+              <h5>Washer & dryer</h5>
+            </div>
+          </div>
+
+      
+        </div>
+          
+
+      </div>
+    </section>
+    
+
+    <!-- ======= Our Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container">
+
+
+        <div class="section-title">
+          <h2>Rental styles for everyone</h2>
+          <p>We are different and we like different thing thats why we have different lodgging spaces and styles for everyone</p>
+        </div>
+
+
+        <div class="row portfolio-container">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/homes.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3><a href="{% url 'home'%}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1">Houses</a></h3>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets/img/hotel.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3><a href="{% url 'hotel'%}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3">Hotels</a></h3>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/kkkk.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3><a href="{% url 'cottage'%}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2">Cottages</a></h3>
+                
+              </div>
+            </div>
+          </div>
+
+          
+         
+        </div>
+
+      </div>
+    </section><!-- End Our Portfolio Section -->
+
+    <section class="call-to-action">
+      <div class="container">
+
+        <div class="text-center">
+          
+          
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======= Testimonials ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Testimonials</h2>
+        </div>
+
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="member">
+              <img src="assets/img/testimonials/testimonials-1.jpg" alt="">
+              <h4>Walter White</h4>
+
+              <p>
+                Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
+              </p>
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member">
+              <img src="assets/img/testimonials/testimonials-2.jpg" alt="">
+              <h4>Sarah Jhinson</h4>
+
+              <p>
+                Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus
+              </p>
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member">
+              <img src="assets/img/testimonials/testimonials-3.jpg" alt="">
+              <h4>William Anderson</h4>
+
+              <p>
+                Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
+              </p>
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Our testimonials Section -->
+
+    <!-- ======= Contact Us Section ======= -->
+    <section id="contact" class="contact section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contact Us</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="contact-rooms">
+              <h3>Boroko</h3>
+              <p>Cras fermentum odio eu feugiat. Justo eget magna fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
+              <div class="social-links">
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="info">
+              <div>
+                <i class="bi bi-geo-alt"></i>
+                <p>A108 Adam Street<br>New York, NY 535022</p>
+              </div>
+
+              <div>
+                <i class="bi bi-envelope"></i>
+                <p>info@example.com</p>
+              </div>
+
+              <div>
+                <i class="bi bi-phone"></i>
+                <p>+1 5589 55488 55s</p>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-lg-5 col-md-12">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+              </div>
+              <div class="form-group mt-3">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Us Section -->
+
+    <!-- ======= Map Section ======= -->
+    <section class="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a23e28c1191%3A0x49f75d3281df052a!2s150%20Park%20Row%2C%20New%20York%2C%20NY%2010007%2C%20USA!5e0!3m2!1sen!2sbg!4v1579767901424!5m2!1sen!2sbg" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+    </section><!-- End Map Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Boroko</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-one-page-bootstrap-template-Boroko/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End #footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/js/jquery-3.3.1.js'%}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js'%"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js'}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js'%}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js'%}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js'%}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js'%}"></script>
+
+</body>
+
+</html>

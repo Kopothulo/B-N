@@ -1,0 +1,64 @@
+{% extends 'bnb/base.html' %}
+{% block content %}
+
+<main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Cottages</h2>
+        <ol> 
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li>Cottages</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <section id="rooms" class="rooms">
+    <div class="container">
+
+      <h4>Here are some great rental options</h2>
+      <hr>
+
+      <div class="row gy-3">
+
+        {{i.price}}
+
+        {% for i in cottage %}
+
+        <div class="col-lg-3 col-md-4">
+          <div class="room">
+            <img src="{{i.kitchen_image.url}}" alt="">
+            <h4>Walter White</h4>
+            <p>
+              {{i.number_of_bedroom}}
+              <br>
+              <strong>{{i.price}}</strong>
+            </p>              
+            
+          </div>
+        </div>
+
+
+        {% endfor%}
+
+
+
+       
+      </div>
+
+
+
+
+
+    </div>
+  </section><!-- End rooms Us Section -->
+
+</main><!-- End #main -->
+
+
+{% endblock content %}
